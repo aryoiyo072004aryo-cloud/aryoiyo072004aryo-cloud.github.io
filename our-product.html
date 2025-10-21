@@ -1,3 +1,5 @@
+--- START OF FILE our-product.html ---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,9 +65,10 @@
         /* Gaya untuk gambar komputer yang bisa diklik */
         #computerImage {
             position: absolute;
-            top: 50%; /* Posisikan di tengah vertikal */
-            left: 50%; /* Posisikan di tengah horizontal */
-            transform: translate(-50%, -50%); /* Sesuaikan agar benar-benar di tengah */
+            /* Perubahan di sini: */
+            bottom: 20px; /* Jarak dari bawah */
+            right: 20px;  /* Jarak dari kanan */
+            transform: none; /* Hapus transform: translate(-50%, -50%) */
             width: 300px; /* Ukuran gambar komputer, sesuaikan */
             height: auto;
             cursor: pointer; /* Menunjukkan bahwa elemen ini bisa diklik */
@@ -74,7 +77,7 @@
         }
 
         #computerImage:hover {
-            transform: translate(-50%, -50%) scale(1.05); /* Sedikit membesar saat di-hover */
+            transform: scale(1.05); /* Sedikit membesar saat di-hover */
         }
     </style>
 </head>
@@ -82,8 +85,8 @@
     <div class="background-image" id="ourProductBackground"></div>
 
     <div class="header">
-        <a href="about.html" class="active">About</a>
-        <a href="our-product.html">Our Product</a>
+        <a href="about.html">About</a>
+        <a href="our-product.html" class="active">Our Product</a>
         <a href="testimony.html">Testimony</a>
         <a href="contact.html">Contact</a>
     </div>
@@ -94,7 +97,7 @@
     <script>
         const backgroundDiv = document.getElementById('ourProductBackground');
         const computerImage = document.getElementById('computerImage');
-        let clickCount = 0; // Untuk melacak berapa kali diklik
+        let clickCount = 0; 
 
         computerImage.addEventListener('click', () => {
             clickCount++;
@@ -103,9 +106,8 @@
             } else if (clickCount === 2) {
                 backgroundDiv.style.backgroundImage = "url('3 web c.png')";
             } else {
-                // Opsional: kembali ke 3 web a.png atau biarkan di 3 web c.png
                 backgroundDiv.style.backgroundImage = "url('3 web a.png')";
-                clickCount = 0; // Reset hitungan jika ingin berulang
+                clickCount = 0; 
             }
         });
     </script>
