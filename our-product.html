@@ -26,11 +26,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('3 web a.png'); 
+            background-image: url('3 web a.png'); /* Default background */
             background-size: cover;
             background-position: center;
             opacity: 1;
-            z-index: -1;
+            z-index: -1; /* Place behind content */
+            transition: background-image 0.5s ease-in-out; /* Smooth transition for background image */
         }
 
         .header {
@@ -58,10 +59,27 @@
         .header a.active {
             color: var(--green-apple);
         }
+
+        /* Gaya untuk gambar komputer yang bisa diklik */
+        #computerImage {
+            position: absolute;
+            top: 50%; /* Posisikan di tengah vertikal */
+            left: 50%; /* Posisikan di tengah horizontal */
+            transform: translate(-50%, -50%); /* Sesuaikan agar benar-benar di tengah */
+            width: 300px; /* Ukuran gambar komputer, sesuaikan */
+            height: auto;
+            cursor: pointer; /* Menunjukkan bahwa elemen ini bisa diklik */
+            z-index: 5; /* Di atas background, di bawah header */
+            transition: transform 0.2s ease; /* Efek hover sederhana */
+        }
+
+        #computerImage:hover {
+            transform: translate(-50%, -50%) scale(1.05); /* Sedikit membesar saat di-hover */
+        }
     </style>
 </head>
 <body>
-    <div class="background-image"></div>
+    <div class="background-image" id="ourProductBackground"></div>
 
     <div class="header">
         <a href="about.html">About</a>
@@ -70,7 +88,27 @@
         <a href="#">Contact</a>
     </div>
 
-    <!-- Tidak ada konten lain di halaman Our Product ini -->
+    <!-- Gambar komputer yang bisa diklik -->
+    <img src="computer.png" alt="Computer" id="computerImage">
+
+    <script>
+        const backgroundDiv = document.getElementById('ourProductBackground');
+        const computerImage = document.getElementById('computerImage');
+        let clickCount = 0; // Untuk melacak berapa kali diklik
+
+        computerImage.addEventListener('click', () => {
+            clickCount++;
+            if (clickCount === 1) {
+                backgroundDiv.style.backgroundImage = "url('3 web b.png')";
+            } else if (clickCount === 2) {
+                backgroundDiv.style.backgroundImage = "url('3 web c.png')";
+            } else {
+                // Opsional: kembali ke 3 web a.png atau biarkan di 3 web c.png
+                backgroundDiv.style.backgroundImage = "url('3 web a.png')";
+                clickCount = 0; // Reset hitungan jika ingin berulang
+            }
+        });
+    </script>
 
 </body>
 </html>
